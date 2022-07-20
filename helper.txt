@@ -1,0 +1,13 @@
+tx, err = r.db.Begin()
+
+	defer func() {
+		if err != nil {
+			tx.Rollback()
+		} else {
+			tx.Commit()
+		}
+	}()
+
+	if err != nil {
+		return "", err
+	}
